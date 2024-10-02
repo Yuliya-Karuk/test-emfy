@@ -1,0 +1,11 @@
+.leadsList {
+  display: grid;
+  gap: 10px;
+  flex-direction: column;
+}
+
+.leadsItem {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
