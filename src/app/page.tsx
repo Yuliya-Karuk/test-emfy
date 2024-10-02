@@ -1,23 +1,28 @@
-import { LeadsList } from "@/components/LeadsList/LeadsList";
-import { ApiResponse } from "@/models/types";
+import { Suspense } from "react";
+import styles from "./page.module.css";
+import { Loader } from "@/components/Loader/Loader";
+import Main from "@/components/Main/Main";
+import { CardWithLoader } from "@/components/CardWithLoader/CardWithLoader";
 
-const accessToken = process.env.NEXT_PUBLIC_ACCESS_TOKEN;
-
-const getLeads = async () => {
-  const response = await fetch('https://karukyuliya.amocrm.ru/api/v4/leads', {
-    method: 'GET',
-    headers: {
-      'Authorization': `Bearer ${accessToken}`
-    }
-  });
-  const data: ApiResponse = await response.json();
-  return data;
-};
-
-export default async function Home() {
-  const data = await getLeads();
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string };
+}) {
+  const { id } = searchParams;
 
   return (
-    <LeadsList leads={data._embedded.leads} />
+    <Suspense
+      key={"loader"}
+      fallback={
+        <div className={styles.page}>
+          <Loader />
+        </div>
+      }
+    >
+      <Main>
+        {id && <CardWithLoader id={id} />}
+      </Main>
+    </Suspense>
   );
 }

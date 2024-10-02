@@ -1,0 +1,27 @@
+.card {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+}
+
+.cardLoader {
+  width: 300px;
+  background: rgb(203, 203, 242);;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  text-align: center;
+  position: absolute;
+  min-height: 300px;
+  margin: 0 auto;
+  top: calc(50% - 150px);
+  left: calc(50% - 150px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
